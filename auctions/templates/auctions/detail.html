@@ -40,7 +40,7 @@
                 {% else %}
                 <div class="add-to-watchlist">
                     <a href="{% url 'auctions:watch_listing' auction.id%}">Add to watch list</a>
-            </div>
+                </div>
                 {% endif %}
             </div>
         {% endif %}
@@ -101,5 +101,7 @@
                         <span></span> Submit</button>
                 </form>
             {% endif %}
+        </div>
+    </div>
 <script src="{% static 'auctions/detail.js'%}"></script>
 {% endblock body %}
