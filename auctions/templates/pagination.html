@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="container-pagination">
+    {% if page.has_previous %}
+        <a class="page-previous" href="?page={{ page.previous_page_number }}">&larr;</a>
+    {% endif %}
+         Page {{ page.number }} from {{ page.paginator.num_pages }}
+    {% if page.has_next %}
+        <a class="page-next" href="?page={{ page.next_page_number }}">&rarr;</a>
+    {% endif %}
+</div>

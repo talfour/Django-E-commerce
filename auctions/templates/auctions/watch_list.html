@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="main">
+        <h1 class="watch-list">Watch list</h1>
+        <div class="auctions">
+            {% for follow in followed_auction %}
+                <div class="galleryItem">    
+                    <a href="{% url 'auctions:detail' follow.id%}">
+                        <img class="image" src="{{follow.image.url}}"></img>
+                    </a>
+                    <h3>{{follow.title}}</h3>
+                    <p>Current highest bid: {{follow.bid.all.get.starting_bid}} </p>
+                </div>
+            % endfor %}
+        </div>
+    </div>
+    
+{% endblock body %}

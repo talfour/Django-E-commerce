@@ -1,0 +1,51 @@
+{% extends 'auctions/layout.html' %}
+{% block title %}
+Add new listing
+{% endblock title %}
+{% block body %}
+
+{% if messages %}
+    {% for message in messages %}
+      <li>{{message}} </li>
+    {% endfor %}
+ 
+{% endif %}
+<div class="main">
+  <div class="form">
+    <div class="main-form">
+      <h2>Create new listing</h2>
+      <form action="{% url 'auctions:new_listing'%}" method="POST" class="note-form" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="auction-form">
+        {% for field in auction_form%}
+          {{field}}
+          <label for=id_{{field.label|lower}}>{{field.label}}</label>
+        {%endfor%}
+      </div>
+      
+      <div class="bid-form">
+        {% for field in bid_form %}
+          {{field}}
+          <label for=id_{{field.label|lower}}>{{field.label}}</label>
+        {% endfor %}
+      </div>
+      <div class="image-form">
+        {% for field in image_form %}
+        {{field}}
+          <label for=id_{{field.label|lower}}>Select {{field.label}}s</label>
+        {% endfor %}
+        
+      </div class="button-submit">
+        <button type="submit" class="btn" id="submit-btn"> 
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> 
+        Submit</button>
+      </form> 
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

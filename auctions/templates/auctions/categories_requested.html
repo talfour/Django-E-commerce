@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+
+<div class="main">
+    <div class="auctions">
+    {% for auction in auctions %}
+        {% if auction.is_active %}
+            <div class="galleryItem">
+                <a href="{% url 'auctions:detail' auction.id%}">
+                    {% if auction.image %}
+                        <img class="image" src="{{MEDIA_URL}}{{auction.image.url}}" alt="{{auction.images.url}}"> 
+                    {% else %}
+                        No images found for {{auction.title}}
+                    {% endif %}
+                </a>
+                <h3>{{auction.title}}</h3>
+                <p>{{auction.description|truncatewords:10}} </p>
+                <p>Current highest bid: {{auction.bid.all.get.starting_bid}} </p>
+            </div>
+        {% endif %}
+    {% empty %}
+        <h2 style="text-align:center;">There is no active auctions in that category.</h2>
+    {% endfor %}
+     </div>
+</div>
+{% endblock body %}

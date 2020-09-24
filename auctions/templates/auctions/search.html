@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block title %}
+Results for search
+{% endblock title %}
+
+{% block body %}
+
+<div class="main">
+    <div class="auctions">
+        {% for item in auctions %}
+            {% if item.is_active %}
+                <div class="galleryItem">
+                    <a href="{% url 'auctions:detail' item.id %}">
+                        {% if item.image %}
+                            <img class="image" src="{{MEDIA_URL}}{{item.image.url}}" alt="{{item.images.url}}"> 
+                        {% else %}
+                            No images found for {{auction.title}}
+                        {% endif %}
+                    </a>
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.description|truncatewords:10}} </p>
+                    <p>Current highest bid: {{item.bid.all.get.starting_bid}} </p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+    <div class="pagination">
+        {% include "pagination.html" with page=auctions %}
+    </div>
+</div>
+{% endblock %}
